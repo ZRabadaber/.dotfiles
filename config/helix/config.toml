@@ -1,0 +1,40 @@
+#theme = "monokai_pro_spectrum"
+theme = "ayu_dark"
+
+[editor]
+mouse = true
+scroll-lines = 1
+cursorline = true
+auto-save = false
+completion-trigger-len = 1
+true-color = true
+color-modes = true
+auto-pairs = true
+rulers = [120]
+idle-timeout = 50
+bufferline = "always"
+shell = ["zsh", "-c"]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.indent-guides]
+render = true
+character = "╎"
+
+[editor.file-picker]
+hidden = true
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+left = ["mode", "spinner", "version-control", "file-type", "total-line-numbers", "file-encoding", "file-line-ending"]
+center = ["file-name", "file-modification-indicator", "spacer", "diagnostics"]
+right = ["selections", "primary-selection-length", "position", "position-percentage"]
