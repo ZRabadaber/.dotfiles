@@ -59,6 +59,8 @@ setup() {
 	do
 		snap install $it
 	done
+
+	sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
   
 	ln -s -T $1/zshrc $HOME/.zshrc
 	 
