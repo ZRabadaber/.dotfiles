@@ -1,0 +1,13 @@
+[mgr]
+prepend_keymap = [
+  { on = "!", run = 'shell "pwsh" --block', desc = "Open shell"},
+	{ on = "<C-z>", run = 'suspend', desc = "Return to shell" },
+	{ on = [ "c", "a" ], run = "plugin compress", desc = "Archive selected files" },
+	{ on = [ "c", "g" ], run = "plugin gitadd", desc = "Git add" },
+	{ on = [ "u", "a" ], run = "plugin bookmarks -- save", desc = "Save current position as a bookmark"},
+	{ on = [ "u", "g" ], run = "plugin bookmarks -- jump", desc = "Jump to a bookmark"},
+	{ on = [ "u", "d" ], run = "plugin bookmarks -- delete", desc = "Delete a bookmark"},
+	{ on = [ "u", "D" ], run = "plugin bookmarks -- delete_all", desc = "Delete all bookmarks"},
+	{ on = [ "u", "m" ], run = "plugin bookmarks -- modify", desc = "modify key bind to hoverd path"},
+]
+

@@ -1,0 +1,109 @@
+
+[mgr]
+ratio = [2, 3, 4]
+sort_dir_first = true
+linemode = "size"
+max_width = 3840
+max_height = 2160
+
+[opener]
+play = [
+	{ run = 'mpv "$@"', orphan = true, for = "unix" },
+	{ run = 'mpv "%*"', orphan = true, for = "windows" },
+]
+edit = [
+	{ run = '$EDITOR "$@"', block = true, for = "unix" },
+	{ run = "hx %*", desc = "Helix", block = true, for = "windows" },
+  { run = 'code %*',    orphan = true, desc = "Code",           for = "windows" },
+	{ run = 'code -w %*', block = true,  desc = "Code (block)",   for = "windows" },
+]
+open = [
+	{ run = 'xdg-open "$@"', desc = "Open", for = "unix" },
+	{ run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
+]	
+reveal = [
+	{ run = 'xdg-open "$(dirname "$1")"',           desc = "Reveal", for = "linux" },
+	{ run = 'c:\windows\explorer.exe /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
+]
+extract = [
+	{ run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
+	{ run = 'ya pub extract --list %*',   desc = "Extract here", for = "windows" },
+]
+[open]
+rules = [
+	# Folder
+	{ name = "*/", use = [ "edit", "open", "reveal" ] },
+	# Text
+	{ mime = "text/*", use = [ "edit", "open", "reveal" ] },
+	# Image
+	{ mime = "image/*", use = [ "open", "reveal" ] },
+	# Media
+	{ mime = "{audio,video}/*", use = [ "play", "open", "reveal" ] },
+	# Archive
+  { mime = "application/{,g}zip", use = [ "extract", "open", "reveal" ] },
+	{ mime = "application/{tar,bzip*,7z-compressed,xz,rar}", use = [ "extract", "open", "reveal" ] },
+	# JSON
+	{ mime = "application/{json,ndjson}", use = [ "edit", "open", "reveal" ] },
+	{ mime = "*/javascript", use = [ "edit", "open", "reveal" ] },
+	# Empty file
+	{ mime = "inode/empty", use = [ "edit", "open", "reveal" ] },
+	# Fallback
+	{ name = "*", use = [ "open", "edit", "reveal" ] },
+]
+
+[plugin]
+
+fetchers = [
+	# Mimetype
+	{ id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
+]
+spotters = [
+	{ name = "*/", run = "folder" },
+	# Code
+	{ mime = "text/*", run = "code" },
+	{ mime = "*/{xml,javascript,wine-extension-ini}", run = "code" },
+	# Image
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/*", run = "image" },
+	# Video
+	{ mime = "video/*", run = "video" },
+	# Fallback
+	{ name = "*", run = "file" },
+]
+preloaders = [
+	# Image
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/*", run = "image" },
+	# Video
+	{ mime = "video/*", run = "video" },
+	# PDF
+	{ mime = "application/pdf", run = "pdf" },
+	# Font
+	{ mime = "font/*", run = "font" },
+	{ mime = "application/vnd.ms-opentype", run = "font" },
+]
+previewers = [
+	{ name = "*/", run = "folder", sync = true },
+	# Code
+	{ mime = "text/*", run = "code" },
+	{ mime = "*/{xml,javascript,wine-extension-ini}", run = "code" },
+	# JSON
+	{ mime = "application/{json,ndjson}", run = "json" },
+	# Image
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/*", run = "image" },
+	# Video
+	{ mime = "video/*", run = "video" },
+	# PDF
+	{ mime = "application/pdf", run = "pdf" },
+	# Archive
+	{ mime = "application/{,g}zip", run = "archive" },
+	{ mime = "application/{tar,bzip*,7z-compressed,xz,rar,iso9660-image}", run = "archive" },
+	# Font
+	{ mime = "font/*", run = "font" },
+	{ mime = "application/vnd.ms-opentype", run = "font" },
+	# Empty file
+	{ mime = "inode/empty", run = "empty" },
+	# Fallback
+	{ name = "*", run = "file" },
+]
