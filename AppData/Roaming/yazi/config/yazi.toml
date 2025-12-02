@@ -12,8 +12,8 @@ play = [
 	{ run = 'mpv "%*"', orphan = true, for = "windows" },
 ]
 edit = [
-	{ run = 'wezterm cli split-pane --right -- $EDITOR "$@"', block = true, for = "unix" },
-	{ run = "wezterm cli split-pane --right -- hx %*", desc = "Helix", block = true, for = "windows" },
+	{ run = '$EDITOR "$@"', block = true, for = "unix" },
+	{ run = "hx %*", desc = "Helix", block = true, for = "windows" },
   { run = 'code %*',    orphan = true, desc = "Code",           for = "windows" },
 	{ run = 'code -w %*', block = true,  desc = "Code (block)",   for = "windows" },
 ]
@@ -30,10 +30,10 @@ extract = [
 	{ run = 'ya pub extract --list %*',   desc = "Extract here", for = "windows" },
 ]
 execterm = [
-	{ run = 'wezterm cli split-pane --bottom -- pwsh -noexit -command "%1"', block = true, desc = "Run", for = "windows" },
+	{ run = 'pwsh -noexit -command "%1"', block = true, desc = "Run", for = "windows" },
 ]	
 execscript = [
-	{ run = 'wezterm cli split-pane --bottom -- pwsh -noexit "%1"', block = true, desc = "Run", for = "windows" },
+	{ run = 'pwsh -noexit "%1"', block = true, desc = "Run", for = "windows" },
 ]	
 [open]
 prepend_rules = [
