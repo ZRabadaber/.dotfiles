@@ -16,4 +16,16 @@ function prompt {
         $osc7 = "$ansi_escape[32m${env:USERNAME}@${env:COMPUTERNAME}${ansi_escape}[0m:${provider_path}"
     }
     "${osc7}$("$" * ($nestedPromptLevel + 1)) ";
-}'
+}
+
+function y {
+  $tmp = (New-TemporaryFile).FullName
+  [System.Environment]::SetEnvironmentVariable("YAZI_CWD", $tmp, "User")
+  yazi $args --cwd-file="$tmp"
+  $cwd = Get-Content -Path $tmp -Encoding UTF8
+  if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
+    Set-Location -LiteralPath (Resolve-Path -LiteralPath $cwd).Path
+  }
+  Remove-Item -Path $tmp
+}
+'
