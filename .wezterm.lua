@@ -19,7 +19,7 @@ config.initial_cols = 128
 
 config.enable_kitty_graphics = true
 
-config.font = wezterm.font 'IBM Plex Mono'
+config.font = wezterm.font 'Hack Nerd Font'
 
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
