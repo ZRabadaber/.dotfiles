@@ -7,6 +7,9 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "autosave": "on_focus_change",
+  "buffer_font_family": "Hack Nerd Font Mono",
+  "base_keymap": "JetBrains",
   "project_panel": {
     "dock": "left"
   },
@@ -33,7 +36,7 @@
     "trust_all_worktrees": true
   },
   "ui_font_size": 16,
-  "buffer_font_size": 15,
+  "buffer_font_size": 18.0,
   "theme": {
     "mode": "system",
     "light": "Noctalia Light",
