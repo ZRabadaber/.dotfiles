@@ -1,0 +1,4 @@
+[[mgr.prepend_keymap]]
+on   = [ "e", "l" ]
+run  = "shell 'lazygit %s'"
+desc = "lazygit"
